@@ -1,9 +1,13 @@
+import Modules from '@/ui/modules'
 import client from '@/sanity/client'
+import processMetadata from '@/lib/processMetadata'
+import { notFound } from 'next/navigation'
 import { fetchSanityLive, groq } from '@/sanity/lib/fetch'
 import { modulesQuery } from '@/sanity/lib/queries'
-import { notFound } from 'next/navigation'
-import Modules from '@/ui/modules'
-import processMetadata from '@/lib/processMetadata'
+
+type Props = {
+	params: { slug?: string[] }
+}
 
 export default async function Page({ params }: Props) {
 	const page = await getPage(await params)
@@ -26,6 +30,11 @@ export async function generateStaticParams() {
 		].metadata.slug.current`,
 	)
 
+	// Add a check to see if slugs are returned correctly
+	if (!slugs.length) {
+		throw new Error('No slugs found for pages')
+	}
+
 	return slugs.map((slug) => ({ slug: slug.split('/') }))
 }
 
@@ -47,6 +56,8 @@ async function getPage(params: { slug?: string[] }) {
 	})
 }
 
-type Props = {
+//* params should already be resolved when passed to the component, awaiting it might cause unnecessary delays. I could be wrong though.. still trying to understand all this.
+/* type Props = {
 	params: Promise<{ slug?: string[] }>
 }
+ */

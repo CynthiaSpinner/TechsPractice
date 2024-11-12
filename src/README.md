@@ -20,6 +20,18 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
+## Project Structure Overview
+
+To help with navigating the project, each folder now includes a README.md file to describe its purpose and responsibilites. Here's a breakdown of the key folders:
+
+  * lib/: Contains utility functions, custom hooks, and reusable business logic.  See `lib/README.md` for details.
+  * schemas/: Houses Sanity schema definitions, including document types, object schemas, and custom field types. Refer to `schemas/README.md` for further details.
+  * styles/: Defines global and local styles for the app, including TailwindCSS customizations and component-level styles. Check `styles/README.md` for further details.
+  * types/: Contains TypeScript type definitions for data models, component props, and utility functions. For more information, refer to `types/README.md`.
+  * ui/: Houses reusable UI components like buttons, modals, form elements, and layout structures. See `ui/README.md` for further information.
+  
+Each of these directories provides a `README.md` that gives an overview of its contents and usage, mainly to help in understanding the role of each folder in the project. This structure ensures better organization and maintainability, making it easier to onboard new developers and keep the codebase clean.
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:
